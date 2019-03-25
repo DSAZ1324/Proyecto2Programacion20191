@@ -4,7 +4,25 @@ def obtener_complemento(base):
 
 
 def generar_cadena_complementaria(adn):
-    pass
+    """
+    str -> str
+
+    Transforma una cadena de ADN a su cadena complementaria
+
+    >>> generar_cadena_complementaria('agtc')
+    'tcag'
+
+    >>> generar_cadena_complementaria('AAA')
+    'TTT'
+
+    :param adn: str que representa una cadena de ADN
+    :return: str que representa la cadena complementaria de ADN
+    """
+    complementario = {'a':'t', 'A':'T', 't':'a', 'T':'A', 'c':'g', 'C':'G', 'g':'c', 'G':'C'}
+    com = ''
+    for letra in adn:
+        com += complementario[letra]
+    return com
 
 
 def calcular_correspondencia(adn1, adn2):
