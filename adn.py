@@ -15,6 +15,16 @@ def generar_cadena_complementaria(adn):
     >>> generar_cadena_complementaria('AAA')
     'TTT'
 
+    #>>> generar_cadena_complementaria('1')
+    Traceback (most recent call last):
+    ..
+    TypeError: La cadena no puede tener numeros
+
+    #>>> generar_cadena_complementaria('z')
+    Traceback (most recent call last):
+    ..
+    TypeError: Revise la cadena de ADN
+
     :param adn: str que representa una cadena de ADN
     :return: str que representa la cadena complementaria de ADN
     """
@@ -42,6 +52,16 @@ def corresponden(adn1, adn2):
     >>> corresponden('atg', 'ttt')
     False
 
+    #>>> corresponden('1', 't')
+    Traceback (most recent call last):
+    ..
+    TypeError: La cadena no puede estar compuesta por numeros
+
+    #>>> corresponden('z', 'a')
+    Traceback (most recent call last):
+    ..
+    TypeError: Las Cadenas de ADN no son validas
+
     :param adn1: str que representa la cadena b
     ase de ADN
     :param adn2: str que representa la cadena complementaria de ADN
@@ -65,6 +85,16 @@ def es_base(caracter):
 
     >>> es_base('C')
     'G'
+
+    ·>>> es_base('u')
+    Traceback (most recent call last):
+    ..
+    TypeError: El caracter no pertenece a el codigo del ADN
+
+    #>>> es_base('1')
+    Traceback (most recent call last):
+    ..
+    TypeError: no se pueden ingresar numeros
 
     :param caracter: str que representa el caracter complementario
     :return: str que representa el caracter base
@@ -123,4 +153,18 @@ def unir_cadena(lista_adn):
 
 
 def complementar_cadenas(lista_adn):
+    """
+    (list of str) -> str
+
+    Dada una lista de ADN retorna una cadena de ADN complementaria
+
+    >>> lista_adn(['aaa', 'tga'])
+    'tttact'
+
+    >>> lista_adn(['TGG', 'aaa', 'TTT'])
+    'ACCtttAAA'
+
+    :param lista_adn: list of str que representa la lista de ADN
+    :return: str que representa una cadena de ADN complementaria
+    """
     pass
