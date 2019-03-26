@@ -1,6 +1,35 @@
 def obtener_complemento(base):
-    # retorna caracter
-    pass
+    """
+    str -> str
+
+    'Recibe una letra y retorna su complemento'
+    >>> obtener_complemento('A')
+    'T'
+    >>> obtener_complemento('G')
+    'C'
+    >>> obtener_complemento('T')
+    'A'
+    >>> obtener_complemento('C')
+    'G'
+    >>> obtener_complemento('Z')
+    Traceback (most recent call last):
+     ...
+    ValueError: Z No es una base
+
+    :param base: str introducir base de la cadena
+    :return: El complemento de la candena del ADN
+    """
+    if base == 'A':
+        return 'T'
+    elif base == 'T':
+        return 'A'
+    elif base == 'G':
+        return 'C'
+    elif base == 'C':
+        return 'G'
+    else:
+        raise ValueError(base + " No es una base")
+
 
 
 def generar_cadena_complementaria(adn):
