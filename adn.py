@@ -25,6 +25,8 @@ def obtener_complemento(base):
     """
     if int == type(base):
         raise ValueError(str(base) + " no es una base")
+    if float == type(base):
+        raise ValueError(str(base) + " no es una base")
     if base == 'A':
         return 'T'
     if base == 'a':
@@ -102,11 +104,6 @@ def calcular_correspondencia(adn1, adn2):
 
 
 
-
-
-
-
-
 def corresponden(adn1, adn2):
     """
     (str, str) -> bool
@@ -138,7 +135,26 @@ def corresponden(adn1, adn2):
 
 
 def es_cadena_valida(adn):
-    pass
+    """
+    str) -> boolean
+  con esta funciopn se quiere validar que las cadena sea valida a la base dada
+
+    >>> es_cadena_valida('ATCG')
+    True
+    >>> es_cadena_valida('MNHY')
+    False
+
+    :param adn: La cadena ingresada a evaluar
+    :return: True si la cadena de ADN es valida, False si no se cumple
+    """
+    if not es_base('T'):
+        return
+    return False
+
+
+
+
+
 
 
 def es_base(caracter):
