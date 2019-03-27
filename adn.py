@@ -101,9 +101,6 @@ def calcular_correspondencia(adn1, adn2):
     """
 
 
-
-
-
 def corresponden(adn1, adn2):
     """
     (str, str) -> bool
@@ -116,7 +113,7 @@ def corresponden(adn1, adn2):
     >>> corresponden('atg', 'ttt')
     False
 
-    #>>> corresponden('1', 't')
+    >>> corresponden('1', 't')
     Traceback (most recent call last):
     ..
     TypeError: La cadena no puede estar compuesta por numeros
@@ -152,11 +149,6 @@ def es_cadena_valida(adn):
     return False
 
 
-
-
-
-
-
 def es_base(caracter):
     """
     (str of len == 1) -> str
@@ -164,28 +156,22 @@ def es_base(caracter):
     Valida un caracter y retorna la base correspondiente
 
     >>> es_base('t')
-    'No es base'
+    True
 
     >>> es_base('u')
-    'No es base'
+    False
 
     :param caracter: str que representa el caracter complementario
     :return: str que representa el caracter base
     """
-    if caracter == 'A':
-        return 'Es base'
-    elif caracter == 'a':
-        return 'Es base'
-    elif caracter == 'C':
-        return 'Es base'
-    elif caracter == 'c':
-        return 'Es base'
-    else:
-        return 'No es base'
+    if caracter in 'aAtTcCGg':
+        return True
+    elif caracter not in 'AatTcCgG':
+        return False
 
 
 def es_subcadena(adn1, adn2):
-
+    pass
 
 
 
