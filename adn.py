@@ -40,7 +40,7 @@ def obtener_complemento(base):
             return 'G'
         elif base == 'c':
             return 'g'
-    if es_base(base) != True:
+    if not es_base(base):
         raise ValueError(str(base) + ' no es una base')
 
 
@@ -218,19 +218,22 @@ def unir_cadena(lista_adn):
     pass
 
 
-def complementar_cadenas(lista_adn):
+def complementar_cadenas(lista_adnn):
     """
     (list of str) -> str
 
     Dada una lista de ADN retorna una cadena de ADN complementaria
 
-    >>> lista_adn(['aaa', 'tga'])
-    'tttact'
+    >>> complementar_cadenas(['aaa', 'ttt', 'ccc'])
+    'tttaaaggg'
 
-    >>> lista_adn(['TGG', 'aaa', 'TTT'])
-    'ACCtttAAA'
+    >>> complementar_cadenas(['AGT', 'GCC', 'TTT'])
+    'TCACGGAAA'
 
-    :param lista_adn: list of str que representa la lista de ADN
+    :param lista_adnn: list of str que representa la lista de ADN
     :return: str que representa una cadena de ADN complementaria
     """
-    pass
+    com = ''
+    for cadena in lista_adnn:
+        com += generar_cadena_complementaria(cadena)
+    return com
