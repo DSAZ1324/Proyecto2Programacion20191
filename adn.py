@@ -14,7 +14,7 @@ def obtener_complemento(base):
     >>> obtener_complemento('Z')
     Traceback (most recent call last):
      ...
-    ValueError: Z No es una base
+    ValueError: Z no es una base
     >>> obtener_complemento(1)
     Traceback (most recent call last):
     ...
@@ -23,28 +23,25 @@ def obtener_complemento(base):
     :param base: str introducir base de la cadena
     :return: El complemento de la candena del ADN
     """
-    if int == type(base):
-        raise ValueError(str(base) + " no es una base")
-    if float == type(base):
-        raise ValueError(str(base) + " no es una base")
-    if base == 'A':
-        return 'T'
-    if base == 'a':
-        return 't'
-    elif base == 'T':
-        return 'A'
-    elif base == 't':
-        return 'a'
-    elif base == 'G':
-        return 'C'
-    elif base == 'g':
-        return 'c'
-    elif base == 'C':
-        return 'G'
-    elif base == 'c':
-        return 'g'
-    else:
-        raise ValueError(base + " No es una base")
+    if es_base(base):
+        if base == 'A':
+            return 'T'
+        if base == 'a':
+            return 't'
+        elif base == 'T':
+            return 'A'
+        elif base == 't':
+            return 'a'
+        elif base == 'G':
+            return 'C'
+        elif base == 'g':
+            return 'c'
+        elif base == 'C':
+            return 'G'
+        elif base == 'c':
+            return 'g'
+    if es_base(base) != True:
+        raise ValueError(str(base) + ' no es una base')
 
 
 def generar_cadena_complementaria(adn):
@@ -62,21 +59,19 @@ def generar_cadena_complementaria(adn):
     >>> generar_cadena_complementaria(1)
     Traceback (most recent call last):
     ...
-    ValueError: 1 no es una base
+    TypeError: No puede tener numeros
 
     >>> generar_cadena_complementaria('z')
     Traceback (most recent call last):
     ..
-    ValueError: z No es una base
+    ValueError: z no es una base
 
     :param adn: str que representa una cadena de ADN
     :return: str que representa la cadena complementaria de ADN
     """
     com = ''
     if int == type(adn):
-        raise ValueError(str(adn) + " no es una base")
-    if float == type(adn):
-        raise ValueError(str(adn) + " no es una base")
+        raise TypeError('No puede tener numeros')
     for letra in adn:
         com += obtener_complemento(letra)
     return com
@@ -116,7 +111,7 @@ def corresponden(adn1, adn2):
     >>> corresponden('1', 't')
     Traceback (most recent call last):
     ..
-    TypeError: La cadena no puede estar compuesta por numeros
+    ValueError: 1 no es una base
 
     #>>> corresponden('z', 'a')
     Traceback (most recent call last):
@@ -153,7 +148,7 @@ def es_base(caracter):
     """
     (str of len == 1) -> str
 
-    Valida un caracter y retorna la base correspondiente
+    Valida si un caracter es una base
 
     >>> es_base('t')
     True
@@ -164,15 +159,15 @@ def es_base(caracter):
     :param caracter: str que representa el caracter complementario
     :return: str que representa el caracter base
     """
-    if caracter in 'aAtTcCGg':
+    base = ['A', 'a', 'C', 'c', 'G', 'g', 'T', 't']
+    if caracter in base:
         return True
-    elif caracter not in 'AatTcCgG':
+    if caracter not in base:
         return False
 
 
 def es_subcadena(adn1, adn2):
     pass
-
 
 
 def reparar_dano(adn, complementaria):
@@ -213,7 +208,10 @@ def obtener_complementos(lista_adn):
     :param lista_adn: list of str que representa una lista de ADN
     :return: list of str que representa una lista de ADN complementario
     """
-    pass
+    com = []
+    for cadena in lista_adn:
+        com.append(generar_cadena_complementaria(cadena))
+    return com
 
 
 def unir_cadena(lista_adn):
