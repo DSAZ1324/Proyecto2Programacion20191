@@ -25,6 +25,8 @@ def obtener_complemento(base):
     """
     if int == type(base):
         raise ValueError(str(base) + " no es una base")
+    if float == type(base):
+        raise ValueError(str(base) + " no es una base")
     if base == 'A':
         return 'T'
     if base == 'a':
@@ -45,9 +47,6 @@ def obtener_complemento(base):
         raise ValueError(base + " No es una base")
 
 
-
-
-
 def generar_cadena_complementaria(adn):
     """
     str -> str
@@ -60,23 +59,26 @@ def generar_cadena_complementaria(adn):
     >>> generar_cadena_complementaria('AAA')
     'TTT'
 
-    #>>> generar_cadena_complementaria('1')
+    >>> generar_cadena_complementaria(1)
     Traceback (most recent call last):
-    ..
-    TypeError: La cadena no puede tener numeros
+    ...
+    ValueError: 1 no es una base
 
-    #>>> generar_cadena_complementaria('z')
+    >>> generar_cadena_complementaria('z')
     Traceback (most recent call last):
     ..
-    TypeError: Revise la cadena de ADN
+    ValueError: z No es una base
 
     :param adn: str que representa una cadena de ADN
     :return: str que representa la cadena complementaria de ADN
     """
-    complementario = {'a': 't', 'A': 'T', 't': 'a', 'T': 'A', 'c': 'g', 'C': 'G', 'g': 'c', 'G': 'C'}
     com = ''
+    if int == type(adn):
+        raise ValueError(str(adn) + " no es una base")
+    if float == type(adn):
+        raise ValueError(str(adn) + " no es una base")
     for letra in adn:
-        com += complementario[letra]
+        com += obtener_complemento(letra)
     return com
 
 
@@ -97,11 +99,6 @@ def calcular_correspondencia(adn1, adn2):
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
-
-
-
-
-
 
 
 
@@ -138,40 +135,58 @@ def corresponden(adn1, adn2):
 
 
 def es_cadena_valida(adn):
-    pass
+    """
+    str) -> boolean
+  con esta funciopn se quiere validar que las cadena sea valida a la base dada
+
+    >>> es_cadena_valida('ATCG')
+    True
+    >>> es_cadena_valida('MNHY')
+    False
+
+    :param adn: La cadena ingresada a evaluar
+    :return: True si la cadena de ADN es valida, False si no se cumple
+    """
+    if not es_base('T'):
+        return
+    return False
+
+
+
+
+
 
 
 def es_base(caracter):
     """
-    (str of len == 1) -> (str of len == 1)
+    (str of len == 1) -> str
 
     Valida un caracter y retorna la base correspondiente
 
     >>> es_base('t')
-    'a'
+    'No es base'
 
-    >>> es_base('C')
-    'G'
-
-    ·>>> es_base('u')
-    Traceback (most recent call last):
-    ..
-    TypeError: El caracter no pertenece a el codigo del ADN
-
-    #>>> es_base('1')
-    Traceback (most recent call last):
-    ..
-    TypeError: no se pueden ingresar numeros
+    >>> es_base('u')
+    'No es base'
 
     :param caracter: str que representa el caracter complementario
     :return: str que representa el caracter base
     """
-    complementario = {'a': 't', 'A': 'T', 't': 'a', 'T': 'A', 'c': 'g', 'C': 'G', 'g': 'c', 'G': 'C'}
-    return complementario[caracter]
+    if caracter == 'A':
+        return 'Es base'
+    elif caracter == 'a':
+        return 'Es base'
+    elif caracter == 'C':
+        return 'Es base'
+    elif caracter == 'c':
+        return 'Es base'
+    else:
+        return 'No es base'
 
 
 def es_subcadena(adn1, adn2):
-    pass
+
+
 
 
 def reparar_dano(adn, complementaria):
