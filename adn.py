@@ -185,7 +185,8 @@ def es_base(caracter):
 
 
 def es_subcadena(adn1, adn2):
-    pass
+
+
 
 
 def reparar_dano(adn, complementaria):
