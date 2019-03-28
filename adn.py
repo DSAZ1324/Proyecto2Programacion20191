@@ -95,7 +95,7 @@ def calcular_correspondencia(adn1, adn2):
     :return: num con el procentaje de la cadena
     """
     complementorea = generar_cadena_complementaria(adn1)
-    print (complementorea)
+    print(complementorea)
 
     total = len(adn2)
     print(total)
@@ -141,8 +141,8 @@ def corresponden(adn1, adn2):
 
 def es_cadena_valida(adn):
     """
-    str) -> boolean
-  con esta funciopn se quiere validar que las cadena sea valida a la base dada
+    (str) -> boolean
+  con esta funcion se quiere validar que las cadena sea valida a la base dada
 
     >>> es_cadena_valida('ATCG')
     False
@@ -152,10 +152,13 @@ def es_cadena_valida(adn):
     :param adn: La cadena ingresada a evaluar
     :return: True si la cadena de ADN es valida, False si no se cumple
     """
-    base = es_base
-    if not es_base(base):
-        return False
-    return True
+    for letra in adn:
+        base = es_base(letra)
+        if base == True:
+            return True
+        if base != True:
+            return False
+
 
 
 def es_base(caracter):
@@ -170,7 +173,7 @@ def es_base(caracter):
     >>> es_base('u')
     False
 
-    :param caracter: str que representa el caracter complementario
+    :param caracter: str que representa el caracter complementari
     :return: bool que representa si es una base valida
     """
     if int == type(caracter):
