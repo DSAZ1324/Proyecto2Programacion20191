@@ -107,7 +107,6 @@ def calcular_correspondencia(adn1, adn2):
             coincidencias = coincidencias + 1
         cont = cont + 1
         porcentaje = (coincidencias+100) / total
-        porcentaje = round(porcentaje, 2)
     return porcentaje
 
 
@@ -148,16 +147,19 @@ def es_cadena_valida(adn):
   con esta funciopn se quiere validar que las cadena sea valida a la base dada
 
     >>> es_cadena_valida('ATCG')
-    True
-    >>> es_cadena_valida()
+    False
+    >>> es_cadena_valida('MNBP')
     False
 
     :param adn: La cadena ingresada a evaluar
     :return: True si la cadena de ADN es valida, False si no se cumple
     """
-    if not es_base():
+    base = es_base
+    if not es_base(base):
         return False
     return True
+
+
 
 
 def es_base(caracter):
