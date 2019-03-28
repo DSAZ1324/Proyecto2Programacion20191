@@ -83,17 +83,33 @@ def calcular_correspondencia(adn1, adn2):
 
     calcular el porcentaje de la correspondecia del adn
 
-    >>> calcular_correspondencia('ATATTACGGC','TATAATGCCG')
+    >>> calcular_correspondencia('agtc','tcag')
+
     100.0
-    >>> calcular_correspondencia('ATATATCGGC','TATAATGCCG')
-    80.0
-    >>> calcular_correspondencia('ATATATCGGC','CGATTTACGA')
-    20.0
+    >>> calcular_correspondencia('CGTA','GCTT')
+    50.0
+    >>> calcular_correspondencia('ATAT','CGAT')
+    0.0
 
     :param adn1: str con el adn a intrucir
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
+    complementorea = generar_cadena_complementaria(adn1)
+    print (complementorea)
+
+    total = len(adn2)
+    print total
+    coincidencias = 0
+    cont = 0
+    while (cont < total):
+        if(adn2[cont] == complementorea[cont]):
+            coincidencias = coincidencias + 1
+        cont = cont + 1
+        porcentaje = (coincidencias+100) / total
+        porcentaje = round(porcentaje, 2)
+    return porcentaje
+
 
 
 def corresponden(adn1, adn2):
@@ -133,15 +149,15 @@ def es_cadena_valida(adn):
 
     >>> es_cadena_valida('ATCG')
     True
-    >>> es_cadena_valida('MNHY')
+    >>> es_cadena_valida()
     False
 
     :param adn: La cadena ingresada a evaluar
     :return: True si la cadena de ADN es valida, False si no se cumple
     """
-    if not es_base('T'):
-        return
-    return False
+    if not es_base():
+        return False
+    return True
 
 
 def es_base(caracter):
