@@ -146,7 +146,7 @@ def es_cadena_valida(adn):
 
 def es_base(caracter):
     """
-    (str of len == 1) -> str
+    (str of len == 1) -> bool
 
     Valida si un caracter es una base
 
@@ -157,7 +157,7 @@ def es_base(caracter):
     False
 
     :param caracter: str que representa el caracter complementario
-    :return: str que representa el caracter base
+    :return: bool que representa si es una base valida
     """
     base = ['A', 'a', 'C', 'c', 'G', 'g', 'T', 't']
     if caracter in base:
