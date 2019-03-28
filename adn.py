@@ -185,7 +185,24 @@ def es_base(caracter):
 
 
 def es_subcadena(adn1, adn2):
-    pass
+    """
+    (str, str) -> boolean
+    funcion que nos permite definir la subcadena de una secuencia dada
+
+    >>> es_subcadena('atcgta', 'gta')
+    True
+    >>> es_subcadena('atcg', 'tta')
+    false
+    >>> es_subcadena('atat', '1234')
+    Traceback (most recent call last):
+    ..
+    ValueError: 1234 no se pueden enteros
+
+    :param adn1: str con la cadena 1
+    :param adn2: str con la cadena 2
+    :return: si la secuencia de la cadena 2 es subcadena de l secuencia de la cadena 1
+    """
+
 
 
 def reparar_dano(adn, complementaria):
