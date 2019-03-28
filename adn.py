@@ -83,17 +83,32 @@ def calcular_correspondencia(adn1, adn2):
 
     calcular el porcentaje de la correspondecia del adn
 
-    >>> calcular_correspondencia('ATATTACGGC','TATAATGCCG')
+    >>> calcular_correspondencia('agtc','tcag')
+
     100.0
-    >>> calcular_correspondencia('ATATATCGGC','TATAATGCCG')
-    80.0
-    >>> calcular_correspondencia('ATATATCGGC','CGATTTACGA')
-    20.0
+    >>> calcular_correspondencia('CGTA','GCTT')
+    50.0
+    >>> calcular_correspondencia('ATAT','CGAT')
+    0.0
 
     :param adn1: str con el adn a intrucir
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
+    complementorea = generar_cadena_complementaria(adn1)
+    print (complementorea)
+
+    total = len(adn2)
+    print total
+    coincidencias = 0
+    cont = 0
+    while (cont < total):
+        if(adn2[cont] == complementorea[cont]):
+            coincidencias = coincidencias + 1
+        cont = cont + 1
+        porcentaje = (coincidencias+100) / total
+    return porcentaje
+
 
 
 def corresponden(adn1, adn2):
@@ -132,16 +147,19 @@ def es_cadena_valida(adn):
   con esta funciopn se quiere validar que las cadena sea valida a la base dada
 
     >>> es_cadena_valida('ATCG')
-    True
-    >>> es_cadena_valida('MNHY')
+    False
+    >>> es_cadena_valida('MNBP')
     False
 
     :param adn: La cadena ingresada a evaluar
     :return: True si la cadena de ADN es valida, False si no se cumple
     """
-    if not es_base('T'):
-        return
-    return False
+    base = es_base
+    if not es_base(base):
+        return False
+    return True
+
+
 
 
 def es_base(caracter):
@@ -167,7 +185,24 @@ def es_base(caracter):
 
 
 def es_subcadena(adn1, adn2):
-    pass
+    """
+    (str, str) -> boolean
+    funcion que nos permite definir la subcadena de una secuencia dada
+
+    >>> es_subcadena('atcgta', 'gta')
+    True
+    >>> es_subcadena('atcg', 'tta')
+    false
+    >>> es_subcadena('atat', '1234')
+    Traceback (most recent call last):
+    ..
+    ValueError: 1234 no se pueden enteros
+
+    :param adn1: str con la cadena 1
+    :param adn2: str con la cadena 2
+    :return: si la secuencia de la cadena 2 es subcadena de l secuencia de la cadena 1
+    """
+
 
 
 def reparar_dano(adn, complementaria):
