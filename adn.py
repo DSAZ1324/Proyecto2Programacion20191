@@ -109,7 +109,6 @@ def calcular_correspondencia(adn1, adn2):
     return porcentaje
 
 
-
 def corresponden(adn1, adn2):
     """
     (str, str) -> bool
@@ -159,8 +158,6 @@ def es_cadena_valida(adn):
     return True
 
 
-
-
 def es_base(caracter):
     """
     (str of len == 1) -> bool
@@ -207,7 +204,6 @@ def es_subcadena(adn1, adn2):
     :param adn2: str con la cadena 2
     :return: si la secuencia de la cadena 2 es subcadena de l secuencia de la cadena 1
     """
-
 
 
 def reparar_dano(adn, complementaria):
