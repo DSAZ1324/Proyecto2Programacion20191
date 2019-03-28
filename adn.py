@@ -84,7 +84,6 @@ def calcular_correspondencia(adn1, adn2):
     calcular el porcentaje de la correspondecia del adn
 
     >>> calcular_correspondencia('agtc','tcag')
-
     100.0
     >>> calcular_correspondencia('CGTA','GCTT')
     50.0
@@ -99,7 +98,7 @@ def calcular_correspondencia(adn1, adn2):
     print (complementorea)
 
     total = len(adn2)
-    print total
+    print(total)
     coincidencias = 0
     cont = 0
     while (cont < total):
@@ -177,6 +176,12 @@ def es_base(caracter):
     :param caracter: str que representa el caracter complementario
     :return: bool que representa si es una base valida
     """
+    if int == type(caracter):
+        raise TypeError(str(caracter) + ' no es una base')
+    if float == type(caracter):
+        raise TypeError(str(caracter) + ' no es una base')
+    if len(caracter) != 1:
+        raise ValueError(caracter + ' tiene mas de 1 caracter')
     base = ['A', 'a', 'C', 'c', 'G', 'g', 'T', 't']
     if caracter in base:
         return True
