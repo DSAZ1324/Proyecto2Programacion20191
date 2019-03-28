@@ -145,7 +145,7 @@ def es_cadena_valida(adn):
   con esta funcion se quiere validar que las cadena sea valida a la base dada
 
     >>> es_cadena_valida('ATCG')
-    False
+    True
     >>> es_cadena_valida('MNBP')
     False
 
@@ -158,7 +158,6 @@ def es_cadena_valida(adn):
             return True
         if base != True:
             return False
-
 
 
 def es_base(caracter):
