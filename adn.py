@@ -113,10 +113,10 @@ def corresponden(adn1, adn2):
     ..
     ValueError: 1 no es una base
 
-    #>>> corresponden('z', 'a')
+    >>> corresponden('z', 'a')
     Traceback (most recent call last):
     ..
-    TypeError: Las Cadenas de ADN no son validas
+    ValueError: z no es una base
 
     :param adn1: str que representa la cadena b
     ase de ADN
@@ -156,9 +156,20 @@ def es_base(caracter):
     >>> es_base('u')
     False
 
+    >>> es_base('aaa')
+    Traceback (most recent call last):
+    ..
+    ValueError: aaa tiene mas de 1 caracter
+
     :param caracter: str que representa el caracter complementario
     :return: str que representa el caracter base
     """
+    if int == type(caracter):
+        raise TypeError(str(caracter) + ' no es una base')
+    if float == type(caracter):
+        raise TypeError(str(caracter) + ' no es una base')
+    if len(caracter) != 1:
+        raise ValueError(caracter + ' tiene mas de 1 caracter')
     base = ['A', 'a', 'C', 'c', 'G', 'g', 'T', 't']
     if caracter in base:
         return True
