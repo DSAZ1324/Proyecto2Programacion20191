@@ -190,6 +190,7 @@ def es_subcadena(adn1, adn2):
     :param adn2: str con la cadena 2
     :return: si la secuencia de la cadena 2 es subcadena de l secuencia de la cadena 1
     """
+    pass
 
 
 def reparar_dano(adn, complementaria):
@@ -206,7 +207,7 @@ def reparar_dano(adn, complementaria):
 
     :param adn: str que representa la cadena base
     :param complementaria: str que representa la cadena complementaria
--    :return: str que representa la cadena corregida o de no tener errores devuelve un mensaje
+    :return: str que representa la cadena corregida o de no tener errores devuelve un mensaje
     """
     if int == type(complementaria):
         raise TypeError('No puede tener numeros')
@@ -259,7 +260,7 @@ def complementar_cadenas(lista_adn):
     >>> complementar_cadenas(['AGT', 'GCC', 'TTT'])
     'TCACGGAAA'
 
-    :param lista_adnn: list of str que representa la lista de ADN
+    :param lista_adn: list of str que representa la lista de ADN
     :return: str que representa una cadena de ADN complementaria
     """
     com = ''
