@@ -111,8 +111,7 @@ def corresponden(adn1, adn2):
     >>> corresponden('atg', 'ttt')
     False
 
-    :param adn1: str que representa la cadena b
-    ase de ADN
+    :param adn1: str que representa la cadena base de ADN
     :param adn2: str que representa la cadena complementaria de ADN
     :return: bool que representa si la cadena complementaria corresponde a la de base
     """
@@ -146,9 +145,6 @@ def es_cadena_valida(adn):
 def es_base(caracter):
     """
     (str of len == 1) -> bool
-    (str, str) -> float
-
-    calcular el porcentaje de la correspondecia del adn
 
     Valida si un caracter es una base
 
