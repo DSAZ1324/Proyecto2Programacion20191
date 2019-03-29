@@ -98,7 +98,6 @@ def calcular_correspondencia(adn1, adn2):
     porcentaje = si_coincide*100 / cantidad
     return porcentaje
 
-
 def corresponden(adn1, adn2):
     """
     (str, str) -> bool
@@ -139,8 +138,7 @@ def es_cadena_valida(adn):
             return True
         if base != True:
             return Fals
-
-
+        
 
 def es_base(caracter):
     """
