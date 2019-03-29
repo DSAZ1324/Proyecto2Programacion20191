@@ -139,13 +139,16 @@ def es_cadena_valida(adn):
         if base == True:
             return True
         if base != True:
-            return False
+            return Fals
 
 
 
 def es_base(caracter):
     """
     (str of len == 1) -> bool
+    (str, str) -> float
+
+    calcular el porcentaje de la correspondecia del adn
 
     Valida si un caracter es una base
 
