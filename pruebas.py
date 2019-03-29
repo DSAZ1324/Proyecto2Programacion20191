@@ -48,4 +48,48 @@ class pruebas(unittest.TestCase):
         self.assertEqual(f.reparar_dano('AAA', 'ACC'), 'TTT')
         self.assertEqual(f.reparar_dano('tcc', 'ggg'), 'agg')
         self.assertRaises(ValueError, f.reparar_dano, 'AUU', 'AAA')
+        self.assertRaises(ValueError, f.reparar_dano, 'AAA', 'UAA')
+        self.assertRaises(ValueError, f.reparar_dano, 'auu', 'aaa')
+        self.assertRaises(ValueError, f.reparar_dano, 'AAA', 'UAA')
+        self.assertRaises(TypeError, f.reparar_dano, 1, 'a')
+        self.assertRaises(TypeError, f.reparar_dano, -1, 'a')
+        self.assertRaises(TypeError, f.reparar_dano, 1.1, 'a')
+        self.assertRaises(TypeError, f.reparar_dano, 'a', 1)
+        self.assertRaises(TypeError, f.reparar_dano, 'a', 1.1)
+        self.assertRaises(TypeError, f.reparar_dano, 'a', -1)
+
+    def test_obtener_complementos(self):
+        self.assertEqual(f.obtener_complementos(['aaa', 'ccc']), ['ttt', 'ggg'])
+        self.assertEqual(f.obtener_complementos(['AAA', 'CCC']), ['TTT', 'GGG'])
+        self.assertEqual(f.obtener_complementos(['AAA', 'ccc']), ['TTT', 'ggg'])
+        self.assertEqual(f.obtener_complementos(['aaa', 'CCC']), ['ttt', 'GGG'])
+        self.assertRaises(ValueError, f.obtener_complementos, ['aua', 'aaa'])
+        self.assertRaises(ValueError, f.obtener_complementos, ['aaa', 'aua'])
+        self.assertRaises(ValueError, f.obtener_complementos, ['AUA', 'AAA'])
+        self.assertRaises(ValueError, f.obtener_complementos, ['AAA', 'AUA'])
+        self.assertRaises(TypeError, f.obtener_complementos, [1, 'aaa'])
+        self.assertRaises(TypeError, f.obtener_complementos, [2.2, 'aaa'])
+        self.assertRaises(TypeError, f.obtener_complementos, [-2, 'aaa'])
+        self.assertRaises(TypeError, f.obtener_complementos, ['aaa', 1])
+        self.assertRaises(TypeError, f.obtener_complementos, ['aaa', 1.1])
+        self.assertRaises(TypeError, f.obtener_complementos, ['aaa', -2])
+
+    def test_complementar_cadenas(self):
+        self.assertEqual(f.complementar_cadenas(['aaa', 'ccc']), 'tttggg')
+        self.assertEqual(f.complementar_cadenas(['AAA', 'CCC']), 'TTTGGG')
+        self.assertEqual(f.complementar_cadenas(['AGc', 'Gca']), 'TCgCgt')
+        self.assertRaises(ValueError, f.obtener_complementos, ['aua', 'aaa'])
+        self.assertRaises(ValueError, f.obtener_complementos, ['aaa', 'aua'])
+        self.assertRaises(ValueError, f.obtener_complementos, ['AUA', 'AAA'])
+        self.assertRaises(ValueError, f.obtener_complementos, ['AAA', 'AUA'])
+        self.assertRaises(TypeError, f.obtener_complementos, [1, 'aaa'])
+        self.assertRaises(TypeError, f.obtener_complementos, [2.2, 'aaa'])
+        self.assertRaises(TypeError, f.obtener_complementos, [-2, 'aaa'])
+        self.assertRaises(TypeError, f.obtener_complementos, ['aaa', 1])
+        self.assertRaises(TypeError, f.obtener_complementos, ['aaa', 1.1])
+        self.assertRaises(TypeError, f.obtener_complementos, ['aaa', -2])
+
+
+
+
 
