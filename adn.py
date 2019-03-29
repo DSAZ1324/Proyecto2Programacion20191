@@ -79,7 +79,7 @@ def generar_cadena_complementaria(adn):
 
 def calcular_correspondencia(adn1, adn2):
     """
-    (str, str) -> num
+    (str, str) -> float
 
     calcular el porcentaje de la correspondecia del adn
 
@@ -94,19 +94,19 @@ def calcular_correspondencia(adn1, adn2):
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
-    complementorea = generar_cadena_complementaria(adn1)
-    print(complementorea)
-
-    total = len(adn2)
-    print(total)
-    coincidencias = 0
+    cadena = generar_cadena_complementaria(adn1)
+    cantidad = len(adn2)
+    si_coincide = 0
     cont = 0
-    while (cont < total):
-        if(adn2[cont] == complementorea[cont]):
-            coincidencias = coincidencias + 1
-        cont = cont + 1
-        porcentaje = (coincidencias+100) / total
+
+    while (cont < cantidad):
+        if(adn2[cont]==cadena[cont]):
+            si_coincide = si_coincide +1
+            cont = cont +1
+    porcentaje = si_coincide*100 / cantidad
     return porcentaje
+
+
 
 
 def corresponden(adn1, adn2):
@@ -197,16 +197,26 @@ def es_subcadena(adn1, adn2):
     >>> es_subcadena('atcgta', 'gta')
     True
     >>> es_subcadena('atcg', 'tta')
-    false
+    False
     >>> es_subcadena('atat', '1234')
     Traceback (most recent call last):
     ..
-    ValueError: 1234 no se pueden enteros
+    ValueError: no se pueden enteros
 
     :param adn1: str con la cadena 1
     :param adn2: str con la cadena 2
     :return: si la secuencia de la cadena 2 es subcadena de l secuencia de la cadena 1
     """
+    if not es_cadena_valida(adn2):
+        raise ValueError('no se pueden enteros')
+    if not es_cadena_valida(adn1):
+        raise ValueError('no se pueden enteros')
+    if adn2 in adn1:
+        return True
+    elif adn2 not in adn1:
+        return False
+
+
 
 
 def reparar_dano(adn, complementaria):
@@ -232,7 +242,22 @@ def reparar_dano(adn, complementaria):
 
 
 def obtener_secciones(adn, n):
-    pass
+    """
+    (str, int) -> list of str
+    validar las secciones de una cadena de adn
+
+    >>> obtener_secciones('atata', 2)
+    ['ata', 'ta']
+
+    >>> obtener_secciones('ATGCTACAG', 3)
+    ['ATG', 'CTA', 'CAG']
+
+
+    :param adn: str con la cadena de adn
+    :param n: int con el numero de secciones que se quiere dividir
+    :return: str con el resultado de las secciones
+    """
+
 
 
 def obtener_complementos(lista_adn):
@@ -254,7 +279,24 @@ def obtener_complementos(lista_adn):
 
 
 def unir_cadena(lista_adn):
+    """
+    (list of str) -> str
+    funcion que permita concatenar una lista dada
+
+    >>> unir_cadena(['ATCGTA', 'TAGCAT'])
+    'ATCGTATAGCT'
+    >>> unir_cadena(['gcat', 'cgta'])
+    'gcatcgta'
+
+
+    :param lista_adn: list of str que representa la cadenas de adn en una lista
+    :return:str con la union de las dos cadenas
+    """
     pass
+
+
+
+
 
 
 def complementar_cadenas(lista_adnn):
