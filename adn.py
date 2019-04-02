@@ -137,11 +137,6 @@ def unir_cadena(lista_adn):
             com = com + caracter
     return com
 
-
-def complementar_cadenas(lista_adn):
-    pass
-
-
 def complementar_cadenas(lista_adn):
     com = ''
     for cadena in lista_adn:
