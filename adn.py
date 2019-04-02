@@ -16,7 +16,6 @@ def obtener_complemento(base):
     :param base: str introducir base de la cadena
     :return: El complemento de la candena del ADN
     """
-
     if es_base(base):
         if base == 'A':
             return 'T'
