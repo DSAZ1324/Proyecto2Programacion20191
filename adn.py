@@ -86,17 +86,20 @@ def calcular_correspondencia(adn1, adn2):
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
-    cadena = generar_cadena_complementaria(adn1)
-    cantidad = len(adn2)
-    si_coincide = 0
-    cont = 0
+    cadena_1 = adn1
+    cadena_2 = adn2
+    ubicacion = 0
+    porcentaje = 0
 
-    while (cont < cantidad):
-        if(adn2[cont]==cadena[cont]):
-            si_coincide = si_coincide +1
-            cont = cont +1
-    porcentaje = si_coincide*100 / cantidad
-    return porcentaje
+    if len(cadena_1) == len(cadena_2):
+        for i in cadena_1:
+            if corresponden(i,cadena_2[ubicacion]):
+              porcentaje += 1
+              ubicacion += 1
+        return porcentaje * 100 / len(cadena_1)
+    return 0.0
+
+
 
 def corresponden(adn1, adn2):
     """
@@ -137,7 +140,7 @@ def es_cadena_valida(adn):
         if base == True:
             return True
         if base != True:
-            return Fals
+            return False
         
 
 def es_base(caracter):
@@ -228,7 +231,7 @@ def obtener_secciones(adn, n):
     validar las secciones de una cadena de adn
 
     >>> obtener_secciones('atata', 2)
-    ['ata', 'ta']
+    ['ta', 'ata']
 
     >>> obtener_secciones('ATGCTACAG', 3)
     ['ATG', 'CTA', 'CAG']
@@ -238,6 +241,20 @@ def obtener_secciones(adn, n):
     :param n: int con el numero de secciones que se quiere dividir
     :return: str con el resultado de las secciones
     """
+    suma_cadenas = len(adn)//n
+    division_seccion = []
+    for group in range(n):
+        resultado_cadena = ""
+        cantidad_cadena = suma_cadenas
+        if group == n-1 and len(adn) % n != 0:
+            cantidad_cadena = suma_cadenas + len(adn)%n
+        for caracter in range(cantidad_cadena):
+            base_cadena = grupo * suma_cadenas + caracter
+            resultado_cadena = resultado_cadena + adn[base_cadena]
+        division_seccion.append(resultado_cadena)
+    return division_seccion
+
+
 
 
 
