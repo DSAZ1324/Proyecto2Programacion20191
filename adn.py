@@ -32,19 +32,19 @@ def generar_cadena_complementaria(adn):
 
 
 def calcular_correspondencia(adn1, adn2):
-    complementorea = generar_cadena_complementaria(adn1)
-    print (complementorea)
+    ubicacion = 0
+    porciento_adn = 0
 
-    total = len(adn2)
-    print(total)
-    coincidencias = 0
-    cont = 0
-    while (cont < total):
-        if(adn2[cont] == complementorea[cont]):
-            coincidencias = coincidencias + 1
-        cont = cont + 1
-        porcentaje = (coincidencias+100) / total
-    return porcentaje
+    if not es_cadena_valida(adn2):
+        raise ValueError(adn2 + ' no es una base')
+    if not es_cadena_valida(adn1):
+        raise ValueError(adn1 + ' no es una base')
+    if len(adn1) == len(adn2):
+        for i in adn1:
+            if corresponden(i, adn2[ubicacion]):
+                porciento_adn += 1
+                ubicacion += 1
+        return porciento_adn * 100 / len(adn1)
 
 
 def corresponden(adn1, adn2):
@@ -54,11 +54,15 @@ def corresponden(adn1, adn2):
 
 
 def es_cadena_valida(adn):
+    if int == type(adn):
+        raise TypeError(str(adn) + ' no es una base')
+    if float == type(adn):
+        raise TypeError(str(adn) + ' no es una base')
     for letra in adn:
         base = es_base(letra)
-        if base:
+        if base == True:
             return True
-        if not base:
+        if base != True:
             return False
 
 
@@ -77,7 +81,16 @@ def es_base(caracter):
 
 
 def es_subcadena(adn1, adn2):
-    pass
+    if int == type(adn2):
+        raise TypeError(str(adn2) + ' no es pueden enteros')
+    if int == type(adn1):
+        raise TypeError(str(adn1) + ' no se pueden enteros')
+    if float == type(adn1):
+        raise TypeError(str(adn1) + ' no se pueden enteros')
+    if adn2 in adn1:
+        return True
+    elif adn2 not in adn1:
+        return False
 
 
 def reparar_dano(adn, complementaria):
@@ -92,7 +105,25 @@ def reparar_dano(adn, complementaria):
 
 
 def obtener_secciones(adn, n):
-    pass
+    if not es_cadena_valida(adn):
+        raise ValueError(adn + ' no se pueden enteros')
+    if str == type(n):
+        raise ValueError('No puede tener letras')
+    if float == type(n):
+        raise TypeError('No puede tener enteros')
+    suma_cadenas = len(adn) // n
+    division_seccion = []
+    for group in range(n):
+        resultado_cadena = ""
+        cantidad_cadena = suma_cadenas
+        if group == n - 1 and len(adn) % n != 0:
+            cantidad_cadena = suma_cadenas + len(adn) % n
+        for caracter in range(cantidad_cadena):
+            base_cadena = group * suma_cadenas + caracter
+            resultado_cadena = resultado_cadena + adn[base_cadena]
+        division_seccion.append(resultado_cadena)
+    return division_seccion
+
 
 
 def obtener_complementos(lista_adn):
@@ -104,7 +135,13 @@ def obtener_complementos(lista_adn):
 
 
 def unir_cadena(lista_adn):
-    pass
+    com = ''
+    for cadena in lista_adn:
+        com = (generar_cadena_complementaria(cadena))
+        for caracter in cadena:
+            com = com + caracter
+    return com
+
 
 
 def complementar_cadenas(lista_adn):
