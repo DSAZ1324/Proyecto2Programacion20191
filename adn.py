@@ -15,6 +15,7 @@ def obtener_complemento(base):
     :param base: str introducir base de la cadena
     :return: El complemento de la candena del ADN
     """
+
     if es_base(base):
         if base == 'A':
             return 'T'
@@ -36,22 +37,7 @@ def obtener_complemento(base):
         raise ValueError(str(base) + ' no es una base')
 
 
-
 def generar_cadena_complementaria(adn):
-    """
-    str -> str
-
-    Transforma una cadena de ADN a su cadena complementaria
-
-    >>> generar_cadena_complementaria('agtc')
-    'tcag'
-
-    >>> generar_cadena_complementaria('AAA')
-    'TTT'
-
-    :param adn: str que representa una cadena de ADN
-    :return: str que representa la cadena complementaria de ADN
-    """
     com = ''
     if int == type(adn):
         raise TypeError('No puede tener numeros')
@@ -79,7 +65,6 @@ def calcular_correspondencia(adn1, adn2):
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
-
     ubicacion = 0
     porciento_adn = 0
 
@@ -95,23 +80,7 @@ def calcular_correspondencia(adn1, adn2):
         return porciento_adn * 100 / len(adn1)
 
 
-
 def corresponden(adn1, adn2):
-    """
-    (str, str) -> bool
-
-    Valida si dos cadenas de ADN corresponden entre su base y complementaria
-
-    >>> corresponden('AAAA', 'TTTT')
-    True
-
-    >>> corresponden('atg', 'ttt')
-    False
-
-    :param adn1: str que representa la cadena base de ADN
-    :param adn2: str que representa la cadena complementaria de ADN
-    :return: bool que representa si la cadena complementaria corresponde a la de base
-    """
     if not es_cadena_valida(adn2):
         raise ValueError(adn2 + ' no es una base')
     return generar_cadena_complementaria(adn1) == adn2
@@ -141,22 +110,8 @@ def es_cadena_valida(adn):
         if base != True:
             return False
 
-
+          
 def es_base(caracter):
-    """
-    (str of len == 1) -> bool
-
-    Valida si un caracter es una base
-
-    >>> es_base('t')
-    True
-
-    >>> es_base('u')
-    False
-
-    :param caracter: str que representa el caracter complementario
-    :return: bool que representa si es una base valida
-    """
     if int == type(caracter):
         raise TypeError(str(caracter) + ' no es una base')
     if float == type(caracter):
@@ -184,7 +139,6 @@ def es_subcadena(adn1, adn2):
     :param adn2: str con la cadena 2
     :return: si la secuencia de la cadena 2 es subcadena de l secuencia de la cadena 1
     """
-
     if int == type(adn2):
         raise TypeError(str(adn2) + ' no es pueden enteros')
     if int == type(adn1):
@@ -198,21 +152,6 @@ def es_subcadena(adn1, adn2):
 
 
 def reparar_dano(adn, complementaria):
-    """
-    (str, str) -> str
-
-    Valida dos cadenas y corrige si algun caracter no corresponde
-
-    >>> reparar_dano('atg', 'aag')
-    'tac'
-
-    >>> reparar_dano('atg', 'tac')
-    'No presenta errores'
-
-    :param adn: str que representa la cadena base
-    :param complementaria: str que representa la cadena complementaria
-    :return: str que representa la cadena corregida o de no tener errores devuelve un mensaje
-    """
     if int == type(complementaria):
         raise TypeError('No puede tener numeros')
     if not es_cadena_valida(complementaria):
@@ -259,20 +198,6 @@ def obtener_secciones(adn, n):
 
 
 def obtener_complementos(lista_adn):
-    """
-    (list of str) -> list of str
-
-    Recibe una lista de adn y devuelve la lista de adn complementario
-
-    >>> obtener_complementos(['aaa', 'agt', 'AAA'])
-    ['ttt', 'tca', 'TTT']
-
-    >>> obtener_complementos(['AGT', 'ATG', 'aaa'])
-    ['TCA', 'TAC', 'ttt']
-
-    :param lista_adn: list of str que representa una lista de ADN
-    :return: list of str que representa una lista de ADN complementario
-    """
     com = []
     for cadena in lista_adn:
         com.append(generar_cadena_complementaria(cadena))
@@ -302,20 +227,6 @@ def unir_cadena(lista_adn):
 
 
 def complementar_cadenas(lista_adn):
-    """
-    (list of str) -> str
-
-    Dada una lista de ADN retorna una cadena de ADN complementaria
-
-    >>> complementar_cadenas(['aaa', 'ttt', 'ccc'])
-    'tttaaaggg'
-
-    >>> complementar_cadenas(['AGT', 'GCC', 'TTT'])
-    'TCACGGAAA'
-
-    :param lista_adn: list of str que representa la lista de ADN
-    :return: str que representa una cadena de ADN complementaria
-    """
     com = ''
     for cadena in lista_adn:
         com += generar_cadena_complementaria(cadena)
