@@ -11,14 +11,6 @@ def obtener_complemento(base):
     'A'
     >>> obtener_complemento('C')
     'G'
-    >>> obtener_complemento('Z')
-    Traceback (most recent call last):
-     ...
-    ValueError: Z no es una base
-    >>> obtener_complemento(1)
-    Traceback (most recent call last):
-    ...
-    TypeError: 1 no es una base
 
     :param base: str introducir base de la cadena
     :return: El complemento de la candena del ADN
@@ -42,6 +34,7 @@ def obtener_complemento(base):
             return 'g'
     if not es_base(base):
         raise ValueError(str(base) + ' no es una base')
+
 
 
 def generar_cadena_complementaria(adn):
@@ -77,7 +70,7 @@ def calcular_correspondencia(adn1, adn2):
 
     >>> calcular_correspondencia('agtc','tcag')
     100.0
-    >>> calcular_correspondencia('CGTA','GCTT')
+    >>> calcular_correspondencia('CGTA','GCGC')
     50.0
     >>> calcular_correspondencia('ATAT','CGAT')
     0.0
@@ -86,16 +79,20 @@ def calcular_correspondencia(adn1, adn2):
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
-    ubicacion = 0
-    porcentaje = 0
 
+    ubicacion = 0
+    porciento_adn = 0
+
+    if not es_cadena_valida(adn2):
+        raise ValueError(adn2 + ' no es una base')
+    if not es_cadena_valida(adn1):
+        raise ValueError(adn1 + ' no es una base')
     if len(adn1) == len(adn2):
         for i in adn1:
             if corresponden(i, adn2[ubicacion]):
-              porcentaje += 1
-              ubicacion += 1
-        return porcentaje * 100 / len(adn2)
-    return 0.0
+                porciento_adn += 1
+                ubicacion += 1
+        return porciento_adn * 100 / len(adn1)
 
 
 
@@ -126,20 +123,24 @@ def es_cadena_valida(adn):
   con esta funcion se quiere validar que las cadena sea valida a la base dada
 
     >>> es_cadena_valida('ATCG')
-    False
+    True
     >>> es_cadena_valida('MNBP')
     False
 
     :param adn: La cadena ingresada a evaluar
     :return: True si la cadena de ADN es valida, False si no se cumple
     """
+    if int == type(adn):
+        raise TypeError(str(adn) + ' no es una base')
+    if float == type(adn):
+        raise TypeError(str(adn) + ' no es una base')
     for letra in adn:
         base = es_base(letra)
         if base == True:
             return True
         if base != True:
             return False
-        
+
 
 def es_base(caracter):
     """
@@ -177,20 +178,19 @@ def es_subcadena(adn1, adn2):
     >>> es_subcadena('atcgta', 'gta')
     True
     >>> es_subcadena('atcg', 'tta')
-    false
-    >>> es_subcadena('atat', '1234')
-    Traceback (most recent call last):
-    ..
-    ValueError: 1234 no se pueden enteros
+    False
 
     :param adn1: str con la cadena 1
     :param adn2: str con la cadena 2
     :return: si la secuencia de la cadena 2 es subcadena de l secuencia de la cadena 1
     """
-    if not es_cadena_valida(adn2):
-        raise ValueError('no se pueden enteros')
-    if not es_cadena_valida(adn1):
-        raise ValueError('no se pueden enteros')
+
+    if int == type(adn2):
+        raise TypeError(str(adn2) + ' no es pueden enteros')
+    if int == type(adn1):
+        raise TypeError(str(adn1) + ' no se pueden enteros')
+    if float == type(adn1):
+        raise TypeError(str(adn1) + ' no se pueden enteros')
     if adn2 in adn1:
         return True
     elif adn2 not in adn1:
@@ -229,31 +229,33 @@ def obtener_secciones(adn, n):
     validar las secciones de una cadena de adn
 
     >>> obtener_secciones('atata', 2)
-    ['ta', 'ata']
+    ['at', 'ata']
 
     >>> obtener_secciones('ATGCTACAG', 3)
     ['ATG', 'CTA', 'CAG']
-
 
     :param adn: str con la cadena de adn
     :param n: int con el numero de secciones que se quiere dividir
     :return: str con el resultado de las secciones
     """
-    suma_cadenas = len(adn)//n
+    if not es_cadena_valida(adn):
+        raise ValueError(adn + ' no se pueden enteros')
+    if str == type(n):
+        raise ValueError('No puede tener letras')
+    if float == type(n):
+        raise TypeError('No puede tener enteros')
+    suma_cadenas = len(adn) // n
     division_seccion = []
     for group in range(n):
         resultado_cadena = ""
         cantidad_cadena = suma_cadenas
-        if group == n-1 and len(adn) % n != 0:
-            cantidad_cadena = suma_cadenas + len(adn)%n
+        if group == n - 1 and len(adn) % n != 0:
+            cantidad_cadena = suma_cadenas + len(adn) % n
         for caracter in range(cantidad_cadena):
-            base_cadena = grupo * suma_cadenas + caracter
+            base_cadena = group * suma_cadenas + caracter
             resultado_cadena = resultado_cadena + adn[base_cadena]
         division_seccion.append(resultado_cadena)
     return division_seccion
-
-
-
 
 
 def obtener_complementos(lista_adn):
@@ -291,12 +293,12 @@ def unir_cadena(lista_adn):
     :param lista_adn: list of str que representa la cadenas de adn en una lista
     :return:str con la union de las dos cadenas
     """
-    soluccion = ''
+    com = ''
     for cadena in lista_adn:
-        soluccion = (generar_cadena_complementaria(cadena))
+        com = (generar_cadena_complementaria(cadena))
         for caracter in cadena:
-            soluccion = soluccion + caracter
-    return soluccion
+            com = com + caracter
+    return com
 
 
 def complementar_cadenas(lista_adn):
