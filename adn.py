@@ -86,17 +86,15 @@ def calcular_correspondencia(adn1, adn2):
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
-    cadena_1 = adn1
-    cadena_2 = adn2
     ubicacion = 0
     porcentaje = 0
 
-    if len(cadena_1) == len(cadena_2):
-        for i in cadena_1:
-            if corresponden(i,cadena_2[ubicacion]):
+    if len(adn1) == len(adn2):
+        for i in adn1:
+            if corresponden(i, adn2[ubicacion]):
               porcentaje += 1
               ubicacion += 1
-        return porcentaje * 100 / len(cadena_1)
+        return porcentaje * 100 / len(adn2)
     return 0.0
 
 
@@ -285,7 +283,7 @@ def unir_cadena(lista_adn):
     funcion que permita concatenar una lista dada
 
     >>> unir_cadena(['ATCGTA', 'TAGCAT'])
-    'ATCGTATAGCT'
+    'ATCGTATAGCAT'
     >>> unir_cadena(['gcat', 'cgta'])
     'gcatcgta'
 
@@ -293,7 +291,12 @@ def unir_cadena(lista_adn):
     :param lista_adn: list of str que representa la cadenas de adn en una lista
     :return:str con la union de las dos cadenas
     """
-    pass
+    soluccion = ''
+    for cadena in lista_adn:
+        soluccion = (generar_cadena_complementaria(cadena))
+        for caracter in cadena:
+            soluccion = soluccion + caracter
+    return soluccion
 
 
 def complementar_cadenas(lista_adn):
