@@ -81,7 +81,7 @@ def calcular_correspondencia(adn1, adn2):
     :param adn2: str con la segunda prueba de adn
     :return: num con el procentaje de la cadena
     """
-    ubicacion = 0
+    cont = 0
     porciento_adn = 0
     if not es_cadena_valida(adn2):
         raise ValueError(adn2 + ' no es una base')
@@ -89,9 +89,9 @@ def calcular_correspondencia(adn1, adn2):
         raise ValueError(adn1 + ' no es una base')
     if len(adn1) == len(adn2):
         for i in adn1:
-            if corresponden(i, adn2[ubicacion]):
+            if corresponden(i, adn2[cont]):
                 porciento_adn += 1
-                ubicacion += 1
+                cont += 1
         return porciento_adn * 100 / len(adn1)
 
 
